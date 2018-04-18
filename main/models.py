@@ -16,4 +16,4 @@ class NiceThing(models.Model):
     # can be used to prioritise reviewing.
 
     def __str__(self):
-        return "{} {}".format(date_added.strftime("%d-%m-%Y"), self.text[20])
+        return "{} - [ {:.40} ]".format(self.date_added.strftime("%d-%m-%Y"), self.text)
