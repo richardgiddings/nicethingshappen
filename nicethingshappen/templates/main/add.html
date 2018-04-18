@@ -6,9 +6,9 @@
         {{ form.text }}
     </div>
     <p>Nice things happen everyday. Why not share it with others so that their day can be made just that bit better too? People will see whatever you write here so don't mention names if you don't want to.</p>
-    <button type="submit" class="btn btn-primary mt-3 w-25">Submit</button>
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
 </form>
 <form action="{% url 'index' %}" method="get">
-    <button type="submit" class="btn btn-secondary w-25" name="back-button" value="back">Back</button>
+    <button type="submit" class="btn btn-secondary mt-3 mb-3" name="back-button" value="back">Back</button>
 </form>
 {% endblock %}
