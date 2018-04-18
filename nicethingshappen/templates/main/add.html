@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <div class="form-group mt-3">
+        {{ form.text }}
+    </div>
+    <p>Nice things happen everyday. Why not share it with others so that their day can be made just that bit better too? People will see whatever you write here so don't mention names if you don't want to.</p>
+    <button type="submit" class="btn btn-primary mt-3 w-25">Submit</button>
+</form>
+<form action="{% url 'index' %}" method="get">
+    <button type="submit" class="btn btn-secondary w-25" name="back-button" value="back">Back</button>
+</form>
+{% endblock %}
