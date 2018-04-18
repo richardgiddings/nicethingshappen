@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="pt-3 pb-3">NiceThingsHappen</h1>
+<div class="card">
+    <h5 class="card-title mt-3">{{ nice_thing.date_added | date:"j F Y" }}</h5>
+    <div class="card-body">
+        <p class="card-text">
+            {{ nice_thing.text }}
+        </p>
+    </div>
+</div>
+<div class="btn-group-vertical mt-3">
+    <form action="{% url 'index' %}" method="get">
+        <button type="submit" class="btn btn-secondary">Show another</button>
+    </form>
+    <button type="submit" class="btn btn-secondary">Add</button>
+    <button type="submit" class="btn btn-secondary">Report</button>
+</div>
+{% endblock %}
