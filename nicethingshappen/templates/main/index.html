@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="pt-3 pb-3">NiceThingsHappen</h1>
+<h1 class="pt-3 pb-3">NiceThings Happen</h1>
 <div class="card">
     <h5 class="card-title mt-3">{{ nice_thing.date_added | date:"j F Y" }}</h5>
     <div class="card-body">
@@ -10,11 +10,11 @@
         </p>
     </div>
 </div>
-<div class="btn-group-vertical mt-3">
-    <form action="{% url 'index' %}" method="get">
-        <button type="submit" class="btn btn-secondary">Show another</button>
-    </form>
-    <button type="submit" class="btn btn-secondary">Add</button>
-    <button type="submit" class="btn btn-secondary">Report</button>
+<form action="{% url 'index' %}" method="get">
+    <button type="submit" class="btn btn-primary mt-3 btn-block">Show another NiceThing</button>
+</form>
+<div class="btn-group mt-3" role="group">
+    <button type="submit" class="btn btn-primary">Add</button>
+    <button type="submit" class="btn btn-danger">Report</button>
 </div>
 {% endblock %}
