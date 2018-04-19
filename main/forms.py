@@ -17,3 +17,10 @@ class ReportNiceThingForm(forms.ModelForm):
     class Meta:
         model = NiceThing
         fields = ['id', 'reported_reason']
+        widgets = {
+            'reported_reason' : forms.Textarea(attrs={
+                'rows': '6',
+                'cols': '80',
+                'maxlength': '200',
+            }),
+        }

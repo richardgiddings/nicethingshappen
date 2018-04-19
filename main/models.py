@@ -8,7 +8,7 @@ class NiceThing(models.Model):
 
     reported = models.BooleanField(default=False)
     reported_at = models.DateTimeField(blank=True, null=True)
-    reported_reason = models.TextField(blank=True, null=True)
+    reported_reason = models.CharField(max_length=200, blank=True, null=True)
 
     # Reporting inappropriate posts 
     #
