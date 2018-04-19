@@ -1,10 +1,5 @@
 textarea {
-    max-width: 90%;
-}
-
-form {
- /* Float both forms to the left */
-    display: inline-block;
+    max-width: 80%;
 }
 
 button {

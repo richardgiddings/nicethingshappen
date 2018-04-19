@@ -9,17 +9,23 @@
         </p>
     </div>
 </div>
-<div>
-    <form action="{% url 'index' %}" method="get">
-        <button type="submit" class="btn btn-lg mt-3 random-button"><i class="fas fa-smile fa-2x"></i></button>
-    </form>
+<div class="row">
+    <div class="col">
+        <form action="{% url 'index' %}" method="get">
+            <button type="submit" class="btn btn-lg mt-3 random-button"><i class="fas fa-smile fa-2x"></i></button>
+        </form>
+    </div>
 </div>
-<div>
-    <form action="{% url 'add' %}" method="get">
-        <button type="submit" class="btn btn-lg mt-3 action-button">Add</button>
-    </form>
-    <form action="{% url 'report' %}" method="get">
-        <button type="submit" class="btn btn-lg mt-3 report-button">Report</button>
-    </form>
+<div class="row mt-3">
+    <div class="col text-center">
+        <div class="btn-group">
+            <form action="{% url 'add' %}" method="get">
+                <button type="submit" class="btn btn-lg action-button mr-1">Add</button>
+            </form>
+            <form action="{% url 'report' %}" method="get">
+                <button type="submit" class="btn btn-lg report-button ml-1">Report</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}
