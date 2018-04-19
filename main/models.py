@@ -4,7 +4,7 @@ from django.template.defaultfilters import truncatechars
 class NiceThing(models.Model):
 
     date_added = models.DateTimeField(auto_now_add=True)
-    text = models.TextField()
+    text = models.CharField(max_length=400)
 
     reported = models.BooleanField(default=False)
     reported_at = models.DateTimeField(blank=True, null=True)
