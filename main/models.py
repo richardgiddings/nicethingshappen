@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import truncatechars
 
 class NiceThing(models.Model):
 
@@ -17,3 +18,7 @@ class NiceThing(models.Model):
 
     def __str__(self):
         return "{} - [ {:.40} ]".format(self.date_added.strftime("%d-%m-%Y"), self.text)
+
+    @property
+    def shortened_text(self):
+        return truncatechars(self.text, 40)
