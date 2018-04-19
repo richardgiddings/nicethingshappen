@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post">{% csrf_token %}
+    <div class="form-group mt-3">
+        {{ form.reported_reason }}
+    </div>
+    <p>Please give details why you think this NiceThing should be removed.</p>
+    <button type="submit" class="btn btn-lg mt-3 action-button">Submit</button>
+</form>
+<form action="{% url 'index' %}" method="get">{% csrf_token %}
+    <button type="submit" class="btn btn-lg mt-3 mb-3">Back</button>
+</form>
+{% endblock %}

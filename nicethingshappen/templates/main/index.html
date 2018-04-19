@@ -22,7 +22,7 @@
             <form action="{% url 'add' %}" method="get">
                 <button type="submit" class="btn btn-lg action-button mr-1">Add</button>
             </form>
-            <form action="{% url 'report' %}" method="get">
+            <form action="{% url 'report' nice_thing.id %}" method="get">
                 <button type="submit" class="btn btn-lg report-button ml-1">Report</button>
             </form>
         </div>
