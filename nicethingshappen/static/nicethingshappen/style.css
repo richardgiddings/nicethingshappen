@@ -1,3 +1,40 @@
 textarea {
     max-width: 90%;
 }
+
+form {
+ /* Float both forms to the left */
+    display: inline-block;
+}
+
+button {
+    background: #96897B;
+    color: white;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+button:hover {
+    background: #A99E93;
+}
+
+.random-button {
+    background: #E9C46A;
+    color: white;
+}
+.random-button:hover {
+    background: #EDCE85;
+}
+.action-button {
+    background: #38618C;
+    color: white;
+}
+.action-button:hover {
+    background: #5C7DA0;
+}
+.report-button {
+    background: #FF5964;
+    color: white;
+}
+.report-button:hover {
+    background: #FF959C;
+}
