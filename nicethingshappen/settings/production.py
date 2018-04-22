@@ -45,6 +45,6 @@ DEFAULT_FROM_EMAIL = env['DEFAULT_FROM_EMAIL'] # e.g 'Admin <noreply@example.com
 SERVER_EMAIL = EMAIL_HOST_USER
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ADMINS = ((env['ADMIN_NAME'], env['ADMIN_EMAIL']),)
