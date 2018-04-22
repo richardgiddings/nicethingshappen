@@ -23,6 +23,7 @@ DATABASES['default'].update(db_from_env)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(PROJECT_DIR)
 
 # Where collectstatic puts files
 STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_DIR), 'staticfiles')
