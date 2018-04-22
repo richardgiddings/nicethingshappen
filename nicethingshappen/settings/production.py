@@ -23,7 +23,6 @@ DATABASES['default'].update(db_from_env)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(PROJECT_DIR)
 
 # Where collectstatic puts files
 STATIC_ROOT = os.path.join(os.path.dirname(PROJECT_DIR), 'staticfiles')
@@ -46,6 +45,6 @@ DEFAULT_FROM_EMAIL = env['DEFAULT_FROM_EMAIL'] # e.g 'Admin <noreply@example.com
 SERVER_EMAIL = EMAIL_HOST_USER
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 ADMINS = ((env['ADMIN_NAME'], env['ADMIN_EMAIL']),)
