@@ -9,7 +9,7 @@ from django.contrib import messages
 
 def index(request):
     # get a random quote
-    nice_thing = NiceThing.objects.order_by('?').first()
+    nice_thing = NiceThing.objects.filter(reported=False).order_by('?').first()
 
     return render(request, 
                 template_name="main/index.html",
@@ -38,10 +38,6 @@ def add(request):
 
 def report(request, nice_thing_id):
     nice_thing = NiceThing.objects.get(id=nice_thing_id)
-    if nice_thing.reported:
-        messages.info(request, 'NiceThing already reported.')
-        return HttpResponseRedirect(reverse('thing', 
-                                kwargs={ 'nice_thing_id': nice_thing.id }))
 
     if request.method == 'POST':
         form = ReportNiceThingForm(request.POST, instance=nice_thing)
@@ -50,7 +46,7 @@ def report(request, nice_thing_id):
             instance.reported = True
             instance.reported_at = timezone.now()
             instance.save()
-            messages.info(request, 'NiceThing reported. Thank you.') 
+            messages.info(request, 'NiceThing reported and will be reviewed. Thank you.') 
             return HttpResponseRedirect(reverse('index'))
     else:
         form = ReportNiceThingForm(instance=nice_thing)
