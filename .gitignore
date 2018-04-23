@@ -3,3 +3,4 @@ main/__pycache__/
 main/migrations/__pycache__/
 nicethingshappen/__pycache__/
 nicethingshappen/settings/__pycache__/
+nicethingshappen/staticfiles/
