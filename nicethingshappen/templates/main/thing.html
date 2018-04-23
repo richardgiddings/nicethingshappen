@@ -17,4 +17,11 @@
 <form action="{% url 'index' %}" method="get">
     <button type="submit" class="btn btn-lg btn-block mt-3 mb-3">Back</button>
 </form>
+{% if messages %}
+<p>
+{% for message in messages %}
+    {{ message }}<br/>
+{% endfor %}
+</p>
+{% endif %}
 {% endblock %}

@@ -5,6 +5,7 @@ from .models import NiceThing
 from .forms import NiceThingForm, ReportNiceThingForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 def index(request):
     # get a random quote
@@ -25,8 +26,10 @@ def add(request):
     if request.method == "POST":
         form = NiceThingForm(request.POST)
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('index'))
+            nice_thing = form.save()
+            messages.info(request, 'NiceThing added. Thank you.') 
+            return HttpResponseRedirect(reverse('thing', 
+                                kwargs={ 'nice_thing_id': nice_thing.id }))
     else:
         form = NiceThingForm()
 
@@ -35,6 +38,11 @@ def add(request):
 
 def report(request, nice_thing_id):
     nice_thing = NiceThing.objects.get(id=nice_thing_id)
+    if nice_thing.reported:
+        messages.info(request, 'NiceThing already reported.')
+        return HttpResponseRedirect(reverse('thing', 
+                                kwargs={ 'nice_thing_id': nice_thing.id }))
+
     if request.method == 'POST':
         form = ReportNiceThingForm(request.POST, instance=nice_thing)
         if form.is_valid():
@@ -42,6 +50,7 @@ def report(request, nice_thing_id):
             instance.reported = True
             instance.reported_at = timezone.now()
             instance.save()
+            messages.info(request, 'NiceThing reported. Thank you.') 
             return HttpResponseRedirect(reverse('index'))
     else:
         form = ReportNiceThingForm(instance=nice_thing)

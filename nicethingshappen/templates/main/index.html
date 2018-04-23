@@ -31,4 +31,11 @@
         </div>
     </div>
 </div>
+{% if messages %}
+<p>
+{% for message in messages %}
+    {{ message }}<br/>
+{% endfor %}
+</p>
+{% endif %}
 {% endblock %}
