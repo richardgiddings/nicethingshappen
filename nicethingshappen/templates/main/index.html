@@ -9,11 +9,6 @@
         </p>
     </div>
 </div>
-<div class="row mt-3">
-    <div class="col">
-        <div class="sharethis-inline-share-buttons"></div>
-    </div>
-</div>
 <div class="row">
     <div class="col">
         <form action="{% url 'index' %}" method="get">
@@ -24,11 +19,14 @@
 <div class="row mt-3">
     <div class="col text-center">
         <div class="btn-group">
+            <form action="{% url 'thing' nice_thing.id %}" method="get">
+                <button type="submit" class="btn btn-lg btn-secondary share-button">Share</button>
+            </form>
             <form action="{% url 'add' %}" method="get">
-                <button type="submit" class="btn btn-lg action-button mr-1">Add</button>
+                <button type="submit" class="btn btn-lg action-button add-button">Add</button>
             </form>
             <form action="{% url 'report' nice_thing.id %}" method="get">
-                <button type="submit" class="btn btn-lg report-button ml-1">Report</button>
+                <button type="submit" class="btn btn-lg report-button">Report</button>
             </form>
         </div>
     </div>

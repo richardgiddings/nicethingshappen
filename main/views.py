@@ -4,6 +4,7 @@ from django.urls import reverse
 from .models import NiceThing
 from .forms import NiceThingForm, ReportNiceThingForm
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
 
 def index(request):
     # get a random quote
@@ -11,6 +12,13 @@ def index(request):
 
     return render(request, 
                 template_name="main/index.html",
+                context={'nice_thing': nice_thing})
+
+def thing(request, nice_thing_id):
+    nice_thing = NiceThing.objects.get(id=nice_thing_id)
+
+    return render(request, 
+                template_name="main/thing.html",
                 context={'nice_thing': nice_thing})
 
 def add(request):

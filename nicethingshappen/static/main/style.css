@@ -29,7 +29,16 @@ button:hover {
 .report-button {
     background: #FF5964;
     color: white;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
 }
 .report-button:hover {
     background: #FF959C;
+}
+.add-button {
+    border-radius: 0 !important;
+}
+.share-button {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
 }
