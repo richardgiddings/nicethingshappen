@@ -11,7 +11,7 @@ env = os.environ.copy()
 SECRET_KEY = env['SECRET_KEY']
 
 # Allow all host headers for now until we have a domain name
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['www.nicethingshappen.co.uk']
 
 DEBUG = False
 
