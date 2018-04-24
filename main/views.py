@@ -6,6 +6,7 @@ from .forms import NiceThingForm, ReportNiceThingForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
+from django.core.mail import mail_admins
 
 def index(request):
     # get a random quote
@@ -48,7 +49,13 @@ def report(request, nice_thing_id):
             instance.reported = True
             instance.reported_at = timezone.now()
             instance.save()
-            messages.info(request, 'NiceThing reported and will be reviewed. Thank you.') 
+            messages.info(request, 
+                          'NiceThing reported and will be reviewed. Thank you.')
+            mail_admins(
+                subject="NiceThing ({}) reported".format(nice_thing_id),
+                message="NiceThing {} reported at {}".format(nice_thing_id, 
+                                                             instance.reported_at)
+            ) 
             return HttpResponseRedirect(reverse('index'))
     else:
         form = ReportNiceThingForm(instance=nice_thing)
