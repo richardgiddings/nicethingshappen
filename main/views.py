@@ -18,7 +18,7 @@ def index(request):
                 context={'nice_thing': nice_thing})
 
 def thing(request, nice_thing_id):
-    nice_thing = NiceThing.objects.get(id=nice_thing_id)
+    nice_thing = get_object_or_404(NiceThing, id=nice_thing_id)
 
     return render(request, 
                 template_name="main/thing.html",
