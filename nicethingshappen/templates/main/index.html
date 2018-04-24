@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if nice_thing %}
 <div class="card">
     <h5 class="card-title mt-3">{{ nice_thing.date_added | date:"j F Y" }}</h5>
     <div class="card-body">
@@ -16,18 +17,25 @@
         </form>
     </div>
 </div>
+{% else %}
+<p>There are no NiceThings to show you. Why not Add one?</p>
+{% endif %}
 <div class="row mt-3">
     <div class="col text-center">
         <div class="btn-group">
+            {% if nice_thing %}
             <form action="{% url 'thing' nice_thing.id %}" method="get">
                 <button type="submit" class="btn btn-lg btn-secondary share-button">Share</button>
             </form>
+            {% endif %}
             <form action="{% url 'add' %}" method="get">
                 <button type="submit" class="btn btn-lg action-button add-button">Add</button>
             </form>
+            {% if nice_thing %}
             <form action="{% url 'report' nice_thing.id %}" method="get">
                 <button type="submit" class="btn btn-lg report-button">Report</button>
             </form>
+            {% endif %}
         </div>
     </div>
 </div>

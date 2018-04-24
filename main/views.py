@@ -9,7 +9,9 @@ from django.contrib import messages
 
 def index(request):
     # get a random quote
-    nice_thing = NiceThing.objects.filter(reported=False).order_by('?').first()
+    nice_thing = NiceThing.objects.filter(reported=False)
+    if nice_thing:
+        nice_thing = nice_thing.order_by('?').first()
 
     return render(request, 
                 template_name="main/index.html",
