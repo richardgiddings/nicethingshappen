@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<p>Nice things happen every day. Why not share them with others?</p>
 {% if nice_thing %}
 <div class="card">
     <h5 class="card-title mt-3">{{ nice_thing.date_added | date:"j F Y" }}</h5>
