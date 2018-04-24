@@ -53,8 +53,9 @@ def report(request, nice_thing_id):
                           'NiceThing reported and will be reviewed. Thank you.')
             mail_admins(
                 subject="NiceThing ({}) reported".format(nice_thing_id),
-                message="NiceThing {} reported at {}".format(nice_thing_id, 
-                                                             instance.reported_at)
+                message="NiceThing {} reported at {}\n\n{}".format(nice_thing_id, 
+                                                             instance.reported_at,
+                                                             instance.reported_reason)
             ) 
             return HttpResponseRedirect(reverse('index'))
     else:
