@@ -39,7 +39,7 @@ def add(request):
                   context={'form': form})
 
 def report(request, nice_thing_id):
-    nice_thing = NiceThing.objects.get(id=nice_thing_id)
+    nice_thing = get_object_or_404(NiceThing, id=nice_thing_id)
 
     if request.method == 'POST':
         form = ReportNiceThingForm(request.POST, instance=nice_thing)
