@@ -6,7 +6,9 @@ from .forms import NiceThingForm, ReportNiceThingForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
-from django.core.mail import mail_admins
+import django_rq
+from .tasks import send_email
+from django.conf import settings
 
 def index(request):
     # get a random quote
@@ -47,16 +49,21 @@ def report(request, nice_thing_id):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.reported = True
-            instance.reported_at = timezone.now()
+            instance.reported_at = timezone.localtime(timezone.now())
             instance.save()
             messages.info(request, 
                           'NiceThing reported and will be reviewed. Thank you.')
-            mail_admins(
-                subject="NiceThing ({}) reported".format(nice_thing_id),
-                message="NiceThing {} reported at {}\n\n{}".format(nice_thing_id, 
+
+            # queue emails using redis
+            queue = django_rq.get_queue('email')
+            subject="NiceThing ({}) reported".format(nice_thing_id),
+            message="NiceThing {} reported at {}\n\nText: '{}'\n\nReason: '{}'".format(
+                                                             nice_thing_id, 
                                                              instance.reported_at,
+                                                             instance.text,
                                                              instance.reported_reason)
-            ) 
+            job = queue.enqueue(send_email, subject, message, [settings.DEFAULT_FROM_EMAIL])
+
             return HttpResponseRedirect(reverse('index'))
     else:
         form = ReportNiceThingForm(instance=nice_thing)

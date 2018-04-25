@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 urlpatterns = [
@@ -6,4 +6,6 @@ urlpatterns = [
     path('thing/<int:nice_thing_id>/', views.thing, name='thing'),
     path('add/', views.add, name='add'),
     path('report/<int:nice_thing_id>/', views.report, name='report'),
+
+    path('django-rq/', include('django_rq.urls'))
 ]
