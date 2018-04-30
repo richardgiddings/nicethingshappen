@@ -2,7 +2,7 @@ hr {
     max-width: 240px;
 }
 
-textarea {
+#id_text, #id_reported_reason {
     max-width: 80%;
 }
 
