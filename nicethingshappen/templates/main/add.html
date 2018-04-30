@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 
+{% block extra_js %}
+<script>
+document.getElementById('id_text').onkeyup = function () {
+    var text_max = {{ form.text.field.max_length }};
+    document.getElementById('count_message').innerHTML = "Characters left: " + (text_max - this.value.length);
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <form method="post">{% csrf_token %}
     <div class="form-group mt-3">
         {{ form.text }}
+        <p id="count_message" class="text-info"></p>
     </div>
     <p>People will see whatever you write here so don't mention things you don't want everyone to see.</p>
     <button type="submit" class="btn btn-lg mt-3 action-button">Submit</button>

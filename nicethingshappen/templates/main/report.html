@@ -1,9 +1,19 @@
 {% extends "base.html" %}
 
+{% block extra_js %}
+<script>
+document.getElementById('id_reported_reason').onkeyup = function () {
+    var text_max = {{ form.reported_reason.field.max_length }};
+    document.getElementById('count_message').innerHTML = "Characters left: " + (text_max - this.value.length);
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <form method="post">{% csrf_token %}
     <div class="form-group mt-3">
         {{ form.reported_reason }}
+        <p id="count_message" class="text-info"></p>
     </div>
     <p>Please explain why you think this NiceThing should be removed.</p>
     <button type="submit" class="btn btn-lg mt-3 action-button">Submit</button>
