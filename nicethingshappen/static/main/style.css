@@ -1,3 +1,7 @@
+hr {
+    max-width: 240px;
+}
+
 textarea {
     max-width: 80%;
 }
