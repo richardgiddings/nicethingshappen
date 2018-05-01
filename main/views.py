@@ -109,3 +109,6 @@ def contact(request):
 
     return render(request, 'main/contact.html',
                   context={'form': form_class})
+
+def privacy(request):
+    return render(request, 'main/privacy.html')
