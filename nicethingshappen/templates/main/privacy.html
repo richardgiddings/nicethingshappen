@@ -3,7 +3,7 @@
 {% block content %}
 <div class="text-left">
 <h3>Privacy Policy</h3>
-<p>Nicethingshappen.co.uk enables you to post anonymous nice things that have happened to you that day and to get random nice things that other people have posted. This policy sets out how we use any data provided by you. Please read it carefully and if you have any questions please contact us using the <a href=”https://www.nicethingshappen.co.uk/contact/”>Contact</a> page.</p>
+<p>Nicethingshappen.co.uk enables you to post anonymous nice things that have happened to you that day and to get random nice things that other people have posted. This policy sets out how we use any data provided by you. Please read it carefully and if you have any questions please contact us using the <a href="{% url 'contact' %}">Contact</a> page.</p>
 <h4>What information do we collect?</h4>
 <p>We don’t collect any personal data from you. Some technical information about how you use nicethingshappen.co.uk is collected. For example your operating system, browser, IP address and uniform resource locator (URL) visited. This is information that is available in server logs.</p>
 <h4>Who do we share the information with?</h4>
@@ -13,7 +13,7 @@
     <li>if we have a legal obligation to disclose the information (for example, if a court orders us to);</li>
 </ul>
 </p>
-<p>We use the third party service <a href=”http://www.sharethis.com/”> ShareThis</a> for sharing with Facebook, Twitter and via Email so you should accept their <a href=”http://www.sharethis.com/privacy/”>privacy policy</a> if you choose to use this functionality.</p>
+<p>We use the third party service <a href='http://www.sharethis.com/'> ShareThis</a> for sharing with Facebook, Twitter and via Email so you should accept their <a href='http://www.sharethis.com/privacy/'>privacy policy</a> if you choose to use this functionality.</p>
 </div>
 <form action="{% url 'index' %}" method="get">
     <button type="submit" class="btn btn-lg mt-3 mb-3">Back</button>
