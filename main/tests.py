@@ -1,6 +1,37 @@
 from django.test import TestCase
 from .models import NiceThing
+from .forms import ContactForm
 from django.urls import reverse
+
+class FormTests(TestCase):
+    def test_contact_form(self):
+        # just a basic test to check we haven't lost a field
+        # and the form will work with correct data
+        form_data = {
+            "contact_email": "test@email.com",
+            "message": "test message",
+            "send_copy": False,
+        }
+        form = ContactForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+    def test_contact_form_invalid_email(self):
+        form_data = {
+            "contact_email": "test@email",
+            "message": "test message",
+            "send_copy": False,
+        }
+        form = ContactForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
+    def test_contact_form_no_message(self):
+        form_data = {
+            "contact_email": "test@email.com",
+            "message": "",
+            "send_copy": False,
+        }
+        form = ContactForm(data=form_data)
+        self.assertFalse(form.is_valid())
 
 class ViewTests(TestCase):
 

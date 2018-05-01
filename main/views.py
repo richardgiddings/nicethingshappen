@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import NiceThing
-from .forms import NiceThingForm, ReportNiceThingForm
+from .forms import NiceThingForm, ReportNiceThingForm, ContactForm
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 import django_rq
 from .tasks import send_email
 from django.conf import settings
+from django.template.loader import get_template
 
 def index(request):
     # get a random quote
@@ -70,3 +71,41 @@ def report(request, nice_thing_id):
         
     return render(request, template_name='main/report.html',
                   context={'form': form})
+
+def contact(request):
+    form_class = ContactForm
+
+    if request.method == 'POST':
+        form = form_class(data=request.POST)
+
+        if form.is_valid():
+            contact_email = request.POST.get('contact_email', '')
+            message = request.POST.get('message', '')
+            send_copy = request.POST.get('send_copy', '')
+
+            template = get_template('contact_template.txt')
+            context = {
+                'contact_email': contact_email,
+                'message': message,
+            }
+            content = template.render(context)
+
+            # send email to admin
+            queue = django_rq.get_queue('email')
+            job = queue.enqueue(send_email, 
+                                "New contact form submission", 
+                                content, 
+                                [settings.DEFAULT_FROM_EMAIL])
+
+            # has the user asked for a copy to be sent to them too?
+            if send_copy:
+                job = queue.enqueue(send_email, 
+                                    "Your email to nicethingshappen.co.uk", 
+                                    message,
+                                    [contact_email])
+
+            messages.info(request, 'Email sent. Thank you.')
+            return HttpResponseRedirect(reverse('index'))
+
+    return render(request, 'main/contact.html',
+                  context={'form': form_class})
