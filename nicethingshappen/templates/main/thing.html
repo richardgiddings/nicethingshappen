@@ -2,8 +2,8 @@
 
 {% block content %}
 <div class="card">
-    <h5 class="card-title mt-3">{{ nice_thing.date_added | date:"j F Y" }}</h5>
-    <div class="card-body">
+    <h5 class="card-title mt-3 nice-thing-title">{{ nice_thing.date_added | date:"j F Y" }}</h5>
+    <div class="card-body nice-thing-body">
         <p class="card-text">
             {{ nice_thing.text }}
         </p>

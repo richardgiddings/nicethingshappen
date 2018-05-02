@@ -6,6 +6,16 @@ hr {
     max-width: 80%;
 }
 
+h1 {
+    font-family: 'Gravitas One', cursive;
+    font-size: 2em;
+}
+
+.nice-thing-body {
+    font-family: 'Quattrocento', serif;
+    font-size: 1.2em;
+}
+
 button {
     background: #96897B;
     color: white;
