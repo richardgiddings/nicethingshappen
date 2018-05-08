@@ -6,6 +6,8 @@ Nice things happen every day. Why not share them with others? A site to share th
 
 Currently tested on Django 2.0.4. Django-rq and Redis are used for email queueing and PostgreSQL for the database. The site is currently setup to deploy to Heroku with a Procfile. To use with Heroku you currently need the Heroku Postgres and Redis to Go add-ons. 
 
+There is some gibberish detection used for when a NiceThing is added to reject random character presses. This uses https://github.com/rrenaud/Gibberish-Detector 
+
 The following configuration variables are also needed on Heroku:
 
 For email:
