@@ -4,3 +4,4 @@ main/migrations/__pycache__/
 nicethingshappen/__pycache__/
 nicethingshappen/settings/__pycache__/
 nicethingshappen/staticfiles/
+main/giberish_detector/__pycache__

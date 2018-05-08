@@ -11,6 +11,8 @@ from .tasks import send_email
 from django.conf import settings
 from django.template.loader import get_template
 
+from main.giberish_detector.gib_detect import test_input
+
 def index(request):
     # get a random quote
     nice_thing = NiceThing.objects.filter(reported=False)
@@ -32,6 +34,10 @@ def add(request):
     if request.method == "POST":
         form = NiceThingForm(request.POST)
         if form.is_valid():
+            if not test_input(form.cleaned_data['text']):
+                return render(request, template_name='main/add.html',
+                                       context={'form': form})
+
             nice_thing = form.save()
             messages.info(request, 'NiceThing added. Thank you.') 
             return HttpResponseRedirect(reverse('thing', 
